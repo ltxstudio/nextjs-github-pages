@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const fetcher = url => axios.get(url).then(res => res.data);
 
