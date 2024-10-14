@@ -25,6 +25,11 @@ const AdminProducts = () => {
     setPrice('');
   };
 
+  const deleteProduct = async (id) => {
+    await axios.delete(`/api/products/${id}`);
+    setProducts(products.filter((product) => product.id !== id));
+  };
+
   return (
     <div className="container mx-auto">
       <h1 className="text-4xl font-bold mb-4">Admin - Manage Products</h1>
@@ -33,8 +38,11 @@ const AdminProducts = () => {
       </button>
       <div className="mt-4">
         {products.map((product) => (
-          <div key={product.id}>
+          <div key={product.id} className="mb-2">
             {product.name} - ${product.price}
+            <button onClick={() => deleteProduct(product.id)} className="bg-red-500 text-white px-2 py-1 rounded ml-4">
+              Delete
+            </button>
           </div>
         ))}
       </div>
